@@ -31,9 +31,9 @@ const SidebarChatList: FC<SidebarChatListProps> = ({ friends, sessionId }) => {
     pusherClient.subscribe(toPusherKey(`user:${sessionId}:friends`))
 
     const newFriendHandler = (newFriend: User) => {
-      router.refresh()
+      //router.refresh()
       //console.log("received new user", newFriend)
-      //setActiveChats((prev) => [...prev, newFriend])
+      setActiveChats((prev) => [...prev, newFriend])
     } 
 
     const chatHandler = (message: ExtendedMessage) => {
@@ -80,7 +80,7 @@ const SidebarChatList: FC<SidebarChatListProps> = ({ friends, sessionId }) => {
 
   return (
     <ul role='list' className='max-h-[25rem] overflow-y-auto -mx-2 space-y-1'>
-      {friends.sort().map((friend) => {
+      {activeChats.sort().map((friend) => {
         const unseenMessagesCount = unseenMessages.filter((unseenMsg) => {
           return unseenMsg.senderId === friend.id
         }).length
