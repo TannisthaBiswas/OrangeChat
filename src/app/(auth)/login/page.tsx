@@ -4,6 +4,7 @@ import Button from '@/components/ui/Button'
 import { FC, useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { toast } from 'react-hot-toast'
+import Image from 'next/image'
 
 const Page: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -21,11 +22,27 @@ const Page: FC = () => {
   }
 
   return (
-    <>
+    <> <section className=" bg-[#f15637] text-white h-screen flex items-center justify-center relative overflow-hidden px-4">
+      
+    {/* Floating Bubbles */}
+      <div className="absolute top-0 left-0 w-36 h-36 bg-white opacity-50 rounded-full "></div>
+      <div className="absolute top-10 right-10 w-64 h-64 bg-white opacity-40 rounded-full "></div>
+      <div className="absolute bottom-10 left-10 w-48 h-48 bg-white opacity-45 rounded-full "></div>
+      <div className="absolute bottom-0 right-0 w-20 h-20 bg-white opacity-55 rounded-full "></div>
+      <div className="absolute bottom-20 left-1/2 w-24 h-24 bg-white opacity-50 rounded-full "></div>
+    {/* Main Content */}
+    
+    <div className="relative z-10 text-center max-w-2xl">    
+     <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+        Stay Connected with Orange Chat
+      </h1>
+      <p className="text-base sm:text-lg md:text-xl mb-8">
+        Chat instantly, from anywhere at any time.
+      </p>
       <div className='flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8'>
-        <div className='w-full flex flex-col items-center max-w-md space-y-8'>
+      <div className='w-full flex flex-col items-center max-w-md space-y-8'>
           <div className='flex flex-col items-center gap-8'>
-            logo
+          
             <h2 className='mt-6 text-center text-3xl font-bold tracking-tight text-gray-900'>
               Sign in to your account
             </h2>
@@ -69,6 +86,9 @@ const Page: FC = () => {
           </Button>
         </div>
       </div>
+    </div>
+  </section>
+      
     </>
   )
 }
