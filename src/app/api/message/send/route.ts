@@ -48,9 +48,17 @@ export async function POST(req: Request) {
       senderId: session.user.id,
       text,
       timestamp,
+      deliveredAt: undefined, 
+      readAt: undefined,  
     }
 
     const message = messageValidator.parse(messageData)
+
+    
+    await db.zadd(`chat:${chatId}:messages`, {
+      score: timestamp,
+      member: JSON.stringify(message),
+    })
 
     await pusherServer.trigger(toPusherKey(`chat:${chatId}`), 'incoming-message', message)
 
@@ -60,10 +68,10 @@ export async function POST(req: Request) {
       senderName: sender.name
     })
 
-    await db.zadd(`chat:${chatId}:messages`, {
-      score: timestamp,
-      member: JSON.stringify(message),
-    })
+    // await db.zadd(`chat:${chatId}:messages`, {
+    //   score: timestamp,
+    //   member: JSON.stringify(message),
+    // })
 
     return new Response('OK')
   } catch (error) {

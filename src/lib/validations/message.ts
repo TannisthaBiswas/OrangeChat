@@ -5,6 +5,10 @@ export const messageValidator = z.object({
   senderId: z.string(),
   text: z.string(),
   timestamp: z.number(),
+  deliveredAt: z.number().optional(),
+  readAt: z.number().optional(), 
+  editedAt: z.number().optional(),
+ 
 })
 
 export const messageArrayValidator = z.array(messageValidator)

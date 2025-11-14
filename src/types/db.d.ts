@@ -16,6 +16,9 @@ interface User {
     receiverId: string
     text: string
     timestamp: number
+    deliveredAt?: number
+    readAt?: number
+    editedAt?: number
   }
   
   interface FriendRequest {
